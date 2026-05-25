@@ -16,9 +16,9 @@ export function LocalGodzSection() {
     <SectionShell>
       <SectionHeader index="Stage 02" label="Local Godz" />
 
-      <div className="mt-10 grid grid-cols-1 gap-10 md:mt-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
+      <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
         <div className="flex flex-col gap-5">
-          <h2 className="font-pixel text-2xl uppercase text-ink md:text-4xl lg:text-5xl">
+          <h2 className="font-pixel text-2xl uppercase leading-tight text-ink md:text-4xl lg:text-5xl">
             Local Godz
           </h2>
           <p className="font-terminal text-xl leading-snug text-ink-soft text-pretty md:text-2xl">
@@ -29,11 +29,9 @@ export function LocalGodzSection() {
           </p>
           <div className="mt-2 border-t border-line pt-4">
             <div className="label mb-3 text-olive">Role</div>
-            <ul className="label flex flex-wrap gap-x-4 gap-y-2 text-ink-soft">
+            <ul className="label flex flex-wrap gap-x-5 gap-y-2 text-ink-soft">
               <li>Editing</li>
-              <li>·</li>
               <li>Social Content Strategy</li>
-              <li>·</li>
               <li>Visual Identity Development</li>
             </ul>
           </div>
@@ -50,14 +48,14 @@ export function LocalGodzSection() {
         </div>
       </div>
 
-      <div className="mt-20 md:mt-28">
+      <div className="mt-14 md:mt-28">
         <div className="flex items-center gap-3">
           <span className="label text-amber">Featured</span>
           <span className="h-px flex-1 bg-line" />
           <span className="label text-ink-mute">03 Clips</span>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-10 md:mt-14 md:grid-cols-3 md:gap-10">
+        <div className="mt-8 grid grid-cols-1 gap-12 md:mt-14 md:grid-cols-3 md:gap-10">
           <VerticalVideo
             src="/videos/local-godz-rebecca.mp4"
             href="https://www.instagram.com/localgodz/reel/DLQD52lJMVu/"

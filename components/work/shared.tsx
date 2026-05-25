@@ -171,7 +171,7 @@ export function SectionShell({
 }) {
   return (
     <section
-      className={`relative mx-auto max-w-site px-6 py-16 md:px-10 md:py-20 ${noBorder ? "" : "border-t border-line"}`}
+      className={`relative mx-auto max-w-site px-5 py-12 md:px-10 md:py-20 ${noBorder ? "" : "border-t border-line"}`}
     >
       {children}
     </section>

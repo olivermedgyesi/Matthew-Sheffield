@@ -12,9 +12,9 @@ export function BidstitchSection() {
     <SectionShell noBorder>
       <SectionHeader index="Stage 01" label="Bidstitch" />
 
-      <div className="mt-10 grid grid-cols-1 gap-10 md:mt-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
+      <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
         <div className="flex flex-col gap-5">
-          <h2 className="font-pixel text-2xl uppercase text-ink md:text-4xl lg:text-5xl">
+          <h2 className="font-pixel text-2xl uppercase leading-tight text-ink md:text-4xl lg:text-5xl">
             Bidstitch
           </h2>
           <p className="font-terminal text-xl leading-snug text-ink-soft text-pretty md:text-2xl">
@@ -25,13 +25,10 @@ export function BidstitchSection() {
           </p>
           <div className="mt-2 border-t border-line pt-4">
             <div className="label mb-3 text-olive">Role</div>
-            <ul className="label flex flex-wrap gap-x-4 gap-y-2 text-ink-soft">
+            <ul className="label flex flex-wrap gap-x-5 gap-y-2 text-ink-soft">
               <li>Videography</li>
-              <li>·</li>
               <li>Editing</li>
-              <li>·</li>
               <li>Creative Direction</li>
-              <li>·</li>
               <li>Social Media Strategy</li>
             </ul>
           </div>
@@ -57,7 +54,7 @@ export function BidstitchSection() {
         </div>
       </div>
 
-      <div className="mt-20 md:mt-28">
+      <div className="mt-14 md:mt-28">
         <div className="flex items-center gap-3">
           <span className="label text-amber">Featured</span>
           <span className="h-px flex-1 bg-line" />
