@@ -5,9 +5,9 @@ import { useRef, useState } from "react";
 type Props = {
   src: string;
   title: string;
-  channel: string;
-  platform: string;
-  aspect: "vertical" | "horizontal";
+  channel?: string;
+  platform?: string;
+  aspect: "vertical" | "horizontal" | "square";
 };
 
 export function VideoPlayer({ src, title, channel, platform, aspect }: Props) {
@@ -15,7 +15,13 @@ export function VideoPlayer({ src, title, channel, platform, aspect }: Props) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const aspectClass =
-    aspect === "vertical" ? "aspect-[9/16]" : "aspect-video";
+    aspect === "vertical"
+      ? "aspect-[9/16]"
+      : aspect === "square"
+        ? "aspect-square"
+        : "aspect-video";
+
+  const cornerLabel = [channel, platform].filter(Boolean).join(" · ");
 
   function handlePlay() {
     setPlaying(true);
@@ -53,12 +59,18 @@ export function VideoPlayer({ src, title, channel, platform, aspect }: Props) {
           aria-label={`Play ${title}`}
           className="group absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 bg-black/30 transition-colors hover:bg-black/20 focus:outline-none"
         >
-          <div className="font-pixel text-3xl uppercase text-amber drop-shadow-[0_0_6px_rgba(0,0,0,0.8)] transition-transform group-hover:scale-110 md:text-5xl">
-            ▶
-          </div>
-          <div className="label absolute bottom-3 left-3 text-ink-soft drop-shadow-[0_0_4px_rgba(0,0,0,0.8)]">
-            {channel} · {platform}
-          </div>
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden
+            className="h-5 w-5 fill-amber drop-shadow-[0_0_6px_rgba(0,0,0,0.8)] transition-transform group-hover:scale-110 md:h-8 md:w-8"
+          >
+            <polygon points="6,4 6,20 18,12" />
+          </svg>
+          {cornerLabel ? (
+            <div className="label absolute bottom-3 left-3 text-ink-soft drop-shadow-[0_0_4px_rgba(0,0,0,0.8)]">
+              {cornerLabel}
+            </div>
+          ) : null}
         </button>
       )}
     </div>

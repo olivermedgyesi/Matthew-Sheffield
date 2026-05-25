@@ -12,14 +12,18 @@ export function HeroHeadline() {
 
   return (
     <div
-      className={`flex flex-1 items-center justify-center py-10 transition-opacity duration-1000 ease-out md:py-16 ${
-        visible ? "opacity-100" : "pointer-events-none opacity-0"
-      }`}
+      className="flex min-h-0 flex-1 items-center justify-center py-6 md:py-16"
+      style={{
+        opacity: visible ? 1 : 0,
+        transition: "opacity 1200ms ease-out",
+        pointerEvents: visible ? "auto" : "none",
+        willChange: "opacity",
+      }}
       aria-hidden={!visible}
     >
       <h1
-        className="font-pixel text-center text-sm uppercase text-ink md:text-3xl lg:text-4xl"
-        style={{ lineHeight: 1.7 }}
+        className="font-pixel px-2 text-center text-xs uppercase text-ink md:text-3xl lg:text-4xl"
+        style={{ lineHeight: 1.5 }}
       >
         Creating <span className="text-amber">high-retention</span>
         <br />
