@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { projects, stats, type Project } from "@/lib/projects";
+import { HeroHeadline } from "@/components/HeroHeadline";
 
 export default function Home() {
   return (
@@ -21,7 +22,24 @@ export default function Home() {
 
 function HeroSection() {
   return (
-    <section className="relative mx-auto flex min-h-screen max-w-site flex-col px-6 py-8 md:px-10 md:py-10">
+    <section className="relative mx-auto flex min-h-screen max-w-site flex-col overflow-hidden px-6 py-8 md:px-10 md:py-10">
+      {/* Background video — clipped inside the PixelFrame inner border */}
+      <video
+        src="/videos/homepage-hero.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden
+        className="pointer-events-none absolute inset-4 -z-20 h-[calc(100%-2rem)] w-[calc(100%-2rem)] object-cover md:inset-6 md:h-[calc(100%-3rem)] md:w-[calc(100%-3rem)]"
+      />
+      {/* Slight black overlay so foreground text stays legible */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-4 -z-10 bg-black/55 md:inset-6"
+      />
+
       <PixelFrame />
 
       <div className="relative z-10 flex flex-1 flex-col px-4 py-6 md:px-10 md:py-10">
@@ -60,18 +78,7 @@ function HeroSection() {
           <PlayerRow label="Loc" value="Los Angeles, Calif." />
         </div>
 
-        <div className="flex flex-1 items-center justify-center py-10 md:py-16">
-          <h1
-            className="font-pixel text-center text-sm uppercase text-ink md:text-3xl lg:text-4xl"
-            style={{ lineHeight: 1.7 }}
-          >
-            Creating <span className="text-amber">high-retention</span>
-            <br />
-            content for modern
-            <br />
-            media brands.
-          </h1>
-        </div>
+        <HeroHeadline />
 
         <div className="border-2 border-olive/60 p-4 md:p-5">
           <div className="label mb-2 text-olive">Dialog</div>
