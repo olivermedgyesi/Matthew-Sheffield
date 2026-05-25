@@ -6,6 +6,12 @@ export function HeroHeadline() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    // Match Tailwind's md: breakpoint (768px). Mobile keeps the headline up.
+    const isDesktop =
+      typeof window !== "undefined" &&
+      window.matchMedia("(min-width: 768px)").matches;
+    if (!isDesktop) return;
+
     const timer = setTimeout(() => setVisible(false), 5000);
     return () => clearTimeout(timer);
   }, []);

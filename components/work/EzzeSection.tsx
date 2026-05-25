@@ -53,7 +53,7 @@ export function EzzeSection() {
           <ul className="flex flex-col gap-3 font-terminal text-lg leading-snug text-ink-soft md:text-xl">
             <li>
               <span className="text-amber">▸</span> Helped establish the
-              platform's early visual identity
+              platform&apos;s early visual identity
             </li>
             <li>
               <span className="text-amber">▸</span> Content across accounts
