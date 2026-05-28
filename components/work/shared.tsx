@@ -162,17 +162,9 @@ export function HorizontalVideo({
   );
 }
 
-export function SectionShell({
-  children,
-  noBorder = false,
-}: {
-  children: React.ReactNode;
-  noBorder?: boolean;
-}) {
+export function SectionShell({ children }: { children: React.ReactNode }) {
   return (
-    <section
-      className={`relative mx-auto max-w-site px-5 py-12 md:px-10 md:py-20 ${noBorder ? "" : "border-t border-line"}`}
-    >
+    <section className="relative mx-auto max-w-site px-5 py-12 md:px-10 md:py-20">
       {children}
     </section>
   );

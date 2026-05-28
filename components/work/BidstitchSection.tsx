@@ -9,7 +9,7 @@ import {
 
 export function BidstitchSection() {
   return (
-    <SectionShell noBorder>
+    <SectionShell>
       <SectionHeader index="Stage 01" label="Bidstitch" />
 
       <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1.4fr_1fr] md:gap-16">

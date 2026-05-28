@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { projects, stats, type Project } from "@/lib/projects";
 import { HeroHeadline } from "@/components/HeroHeadline";
+import { Nav } from "@/components/Nav";
+import { ResetKey } from "@/components/ResetKey";
+import { VideoPlayer } from "@/components/VideoPlayer";
 
 export default function Home() {
   return (
@@ -43,34 +46,7 @@ function HeroSection() {
       <PixelFrame />
 
       <div className="relative z-10 flex flex-1 flex-col px-4 py-6 md:px-10 md:py-10">
-        <nav className="label flex items-center justify-between text-ink-soft">
-          <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 md:gap-x-7">
-            <li className="flex items-center gap-2">
-              <span className="cursor-blink text-amber">►</span>
-              <Link href="/" className="text-amber">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/work" className="hover:text-amber">
-                Work
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className="hover:text-amber">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-amber">
-                Contact
-              </Link>
-            </li>
-          </ul>
-          <span className="hidden text-olive md:inline">
-            Stage 01 — 01 / 04
-          </span>
-        </nav>
+        <Nav active="home" rightLabel="Stage 01 — 01 / 04" />
 
         <div className="mt-10 grid grid-cols-[auto_1fr] items-center gap-x-6 gap-y-0 font-terminal text-2xl leading-[1.1] text-ink-soft md:mt-14 md:gap-x-8">
           <PlayerRow label="Player" value="Matt C. Sheffield" />
@@ -128,9 +104,8 @@ function StatsSection() {
         {stats.map((s) => (
           <li
             key={s.rank}
-            className="grid grid-cols-[auto_1fr_auto] items-center gap-x-4 py-5 md:gap-x-8 md:py-6"
+            className="grid grid-cols-[1fr_auto] items-center gap-x-4 py-5 md:gap-x-8 md:py-6"
           >
-            <span className="label text-olive">[{s.rank}]</span>
             <span className="font-terminal text-xl leading-tight text-ink md:text-2xl">
               {s.label}
             </span>
@@ -225,12 +200,81 @@ function Stage({
         </div>
       </div>
 
-      <VideoFrame name={project.name} />
+      <VideoFrame project={project} />
     </article>
   );
 }
 
-function VideoFrame({ name }: { name: string }) {
+function getYouTubeId(url: string): string | null {
+  const match = url.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/,
+  );
+  return match ? match[1] : null;
+}
+
+function VideoFrame({ project }: { project: Project }) {
+  if (project.video) {
+    const wrapperClass =
+      project.video.aspect === "vertical"
+        ? "mx-auto w-full max-w-xs md:max-w-sm"
+        : "w-full";
+    return (
+      <div className={wrapperClass}>
+        <VideoPlayer
+          src={project.video.src}
+          title={project.name}
+          channel="CH 01"
+          platform="HD"
+          aspect={project.video.aspect}
+        />
+      </div>
+    );
+  }
+
+  if (project.youtube) {
+    const id = getYouTubeId(project.youtube.url);
+    const thumbnail = id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
+    return (
+      <a
+        href={project.youtube.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Watch ${project.name} on YouTube`}
+        className="group relative block aspect-video w-full overflow-hidden border-2 border-ink-soft bg-black"
+      >
+        <div className="pointer-events-none absolute inset-2 z-10 border border-line" />
+        <span className="pointer-events-none absolute left-1 top-1 z-10 h-2 w-2 bg-amber" />
+        <span className="pointer-events-none absolute right-1 top-1 z-10 h-2 w-2 bg-amber" />
+        <span className="pointer-events-none absolute bottom-1 left-1 z-10 h-2 w-2 bg-amber" />
+        <span className="pointer-events-none absolute bottom-1 right-1 z-10 h-2 w-2 bg-amber" />
+
+        {thumbnail ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={thumbnail}
+            alt=""
+            className="absolute inset-0 h-full w-full bg-black object-cover"
+            loading="lazy"
+          />
+        ) : null}
+
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/30 transition-colors group-hover:bg-black/20">
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden
+            className="h-5 w-5 fill-amber drop-shadow-[0_0_6px_rgba(0,0,0,0.8)] transition-transform group-hover:scale-110 md:h-8 md:w-8"
+          >
+            <polygon points="6,4 6,20 18,12" />
+          </svg>
+        </div>
+
+        <div className="label absolute bottom-3 left-3 z-20 text-ink-soft drop-shadow-[0_0_4px_rgba(0,0,0,0.8)]">
+          CH 01 · YouTube
+        </div>
+      </a>
+    );
+  }
+
   return (
     <div className="relative aspect-video w-full border-2 border-ink-soft bg-black">
       <div className="pointer-events-none absolute inset-2 border border-line" />
@@ -243,7 +287,7 @@ function VideoFrame({ name }: { name: string }) {
         <div className="font-pixel text-xl uppercase text-amber md:text-3xl">
           ▶
         </div>
-        <div className="label text-ink-soft">{name}</div>
+        <div className="label text-ink-soft">{project.name}</div>
         <div className="label flex items-center gap-2 text-olive">
           <span className="cursor-blink">●</span>
           <span>Awaiting Signal</span>
@@ -318,7 +362,7 @@ function ContactSection() {
         <span className="label text-ink-mute">
           © {new Date().getFullYear()} · Matt Sheffield
         </span>
-        <span className="label text-ink-mute">End of File · Press R to Reset</span>
+        <ResetKey />
       </div>
     </section>
   );

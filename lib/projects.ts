@@ -5,6 +5,13 @@ export type Project = {
   blurb: string;
   tags: string[];
   metric: string;
+  video?: {
+    src: string;
+    aspect: "vertical" | "horizontal";
+  };
+  youtube?: {
+    url: string;
+  };
 };
 
 export const projects: Project[] = [
@@ -16,6 +23,10 @@ export const projects: Project[] = [
       "Long-form YouTube content, short-form social, and brand storytelling for a modern vintage fashion platform. Includes viral content tied to a Levi's TikTok collaboration.",
     tags: ["YouTube", "TikTok", "Instagram"],
     metric: "150K+ subscribers",
+    video: {
+      src: "/videos/bidstitch-levis.mp4",
+      aspect: "vertical",
+    },
   },
   {
     slug: "local-godz",
@@ -25,6 +36,10 @@ export const projects: Project[] = [
       "Short-form social content for a rapidly growing podcast on Asian American celebrities, creatives, and internet culture. Fast-paced social-first editing — multiple videos surpassing 1M views.",
     tags: ["Instagram", "TikTok"],
     metric: "0 → 13K Instagram",
+    video: {
+      src: "/videos/local-godz-rebecca.mp4",
+      aspect: "vertical",
+    },
   },
   {
     slug: "ezze",
@@ -34,6 +49,10 @@ export const projects: Project[] = [
       "Promotional and social-first media for a livestream marketplace platform focused on vintage fashion and collectibles. Branded edits, launch materials, and livestream marketing.",
     tags: ["Livestream", "Social"],
     metric: "Launch campaign",
+    video: {
+      src: "/videos/ezze/ezze-promo-1.mp4",
+      aspect: "vertical",
+    },
   },
   {
     slug: "kyle-keller",
@@ -43,6 +62,10 @@ export const projects: Project[] = [
       "Filmed viral social content centered on fast-paced creator storytelling and audience engagement.",
     tags: ["TikTok", "Instagram"],
     metric: "Viral creator content",
+    video: {
+      src: "/videos/kyle-heavy-money.mp4",
+      aspect: "vertical",
+    },
   },
   {
     slug: "documentary",
@@ -52,6 +75,10 @@ export const projects: Project[] = [
       "Documentary videos exploring vintage fashion culture, reselling communities, and regional sourcing networks across Mexico, Japan, and France. One film surpassed 300K views on YouTube.",
     tags: ["YouTube", "Long-form"],
     metric: "300K+ views",
+    video: {
+      src: "/videos/bidstitch-bandos.mp4",
+      aspect: "horizontal",
+    },
   },
   {
     slug: "music-videos",
@@ -61,15 +88,9 @@ export const projects: Project[] = [
       "Music videos and visual content for independent artists, including a project connected to David Hartley of The War on Drugs.",
     tags: ["Music", "Visual"],
     metric: "Independent artists",
-  },
-  {
-    slug: "vintage-n-stuff",
-    name: "Vintage N' Stuff",
-    role: "Podcast Edit · Social",
-    blurb:
-      "Podcast and social content for a vintage-focused media platform and podcast.",
-    tags: ["Podcast", "Social"],
-    metric: "Vintage media",
+    youtube: {
+      url: "https://www.youtube.com/watch?v=uKd9vCvbxQQ",
+    },
   },
 ];
 
